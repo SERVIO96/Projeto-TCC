@@ -1,0 +1,126 @@
+{% extends "tasks/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div class="header">
+  <a class="imgcont1" href="/"><img src="{% static 'imagem/logo3.png' %}" width="50" height="100"></a>
+  <h1 class="header-title">Cadastro de Máquinas</h1>
+  
+</div>
+
+
+
+<div class="table table-dark table-hover">
+  <div>
+
+    <a class="btn btn-danger" href="{% url 'cvs' %}?filter_tipo={{ request.GET.filter_tipo }}&filter_modelo={{ request.GET.filter_modelo }}&filter_placa={{ request.GET.filter_placa }}&filter_chassi={{ request.GET.filter_chassi }}&filter_data={{ request.GET.filter_data }}">Export Excel</a>
+
+    <a class="btn btn-danger" href="{% url 'pdf' %}?filter_tipo={{ request.GET.filter_tipo }}&filter_modelo={{ request.GET.filter_modelo }}&filter_placa={{ request.GET.filter_placa }}&filter_chassi={{ request.GET.filter_chassi }}&filter_data={{ request.GET.filter_data }}">Export PDF</a>
+
+    <a href="/form" class="btn btn-success">Adicionar</a>
+    <a href="/" class="btn btn-success">Voltar</a>
+
+    <form method="get" action="{% url 'maquina' %}">
+
+  </div>
+  <div class="dropdown" style="width: 150px;">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="font-size: 14px;">
+      Filtros
+      <span class="caret"></span>
+    </button>
+
+
+    <ul class="dropdown-menu">
+
+      <li>
+        <label for="filter_data">Filtrar por Data:</label>
+        <input type="date" id="filter_data" name="filter_data" class="form-control"
+          value="{{ request.GET.filter_data }}">
+      </li>
+      <li>
+        <label for="filter_placa">Filtrar por Placa:</label>
+        <input type="text" id="filter_placa" name="filter_placa" class="form-control"
+          value="{{ request.GET.filter_placa }}">
+      </li>
+      <li>
+        <label for="filter_modelo">Filtrar por Modelo:</label>
+        <input type="text" id="filter_modelo" name="filter_modelo" class="form-control"
+          value="{{ request.GET.filter_modelo }}">
+      </li>
+      <li>
+        <label for="filter_chassi">Filtrar por Chassi:</label>
+        <input type="text" id="filter_chassi" name="filter_chassi" class="form-control"
+          value="{{ request.GET.filter_chassi }}">
+      </li>
+      <li>
+        <label for="filter_tipo">Filtrar por Tipo:</label>
+        <input type="text" id="filter_tipo" name="filter_tipo" class="form-control"
+          value="{{ request.GET.filter_tipo }}">
+      </li>
+      <button class="btn btn-success" id="filter_button">Filtrar</button>
+      <a href="/maquina" class="btn btn-success">Voltar</a>
+
+      <li>
+
+      </li>
+    </ul>
+  </div>
+  </form>
+  <table class="table">
+    <thead class="thead-dark">
+
+      </form>
+      
+      <th scope="col">Tipo</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Chassi</th>
+      <th scope="col">data</th>
+      <th scope="col">ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for dbs in db %}
+
+      </tr>
+      <th>{{dbs.id}}</th>
+      <td>{{dbs.tipo}}</td>
+      <td>{{dbs.modelo}}</td>
+      <td>{{dbs.placa}}</td>
+      <td>{{dbs.Chassi}}</td>
+      <td>{{dbs.data}}</td>
+
+
+      <td>
+
+        <a href="/view/{{dbs.id}}/" class="btn btn-dark">Visualizar</a>
+        <a href="/edit/{{dbs.id}}/" class="btn btn-primary">Editar</a>
+        <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+      </td>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="{% static 'js/javascript.js' %}"></script>
+
+
+</body>
+
+</html>
+
+
+
+{% endblock %}

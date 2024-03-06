@@ -1,0 +1,118 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div class="header">
+  <a class="imgcont1" href="/"><img src="{% static 'imagem/logo3.png' %}" width="50" height="100"></a>
+  <h1 class="header-title" margin-left="20px" >Relatório de Consumo</h1>
+</div>
+<div class="table table-dark table-hover">
+  <div>
+    <a class="btn btn-danger" href="{% url 'cvs1' %}?filter_operador={{ request.GET.filter_operador }}&filter_data={{ request.GET.filter_data }}&filter_litragem={{ request.GET.filter_litragem }}&filter_valor={{ request.GET.filter_valor }}&filter_kminicial={{ request.GET.filter_kminicial }}&filter_kmfinal={{ request.GET.filter_kmfinal }}">Export Excel</a>
+
+    <a class="btn btn-danger" href="{% url 'pdf1' %}?filter_operador={{ request.GET.filter_operador }}&filter_data={{ request.GET.filter_data }}&filter_litragem={{ request.GET.filter_litragem }}&filter_valor={{ request.GET.filter_valor }}&filter_kminicial={{ request.GET.filter_kminicial }}&filter_kmfinal={{ request.GET.filter_kmfinal }}">Export PDF</a>
+
+    <a href="/form2" class="btn btn-success">Adicionar</a>
+    <a href="/" class="btn btn-success">Voltar</a>
+    
+  </div>
+  <form method="get" action="{% url 'consumo' %}">
+  <div class="dropdown" style="width: 150px;">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="font-size: 14px;">
+      Filtros
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <label for="filter_operador">Filtrar por Operador:</label>
+        <input type="text" id="filter_operador" name="filter_operador" class="form-control"
+          value="{{ request.GET.filter_operador }}">
+      </li>
+      <li>
+        <label for="filter_data">Filtrar por Data:</label>
+        <input type="date" id="filter_data" name="filter_data" class="form-control"
+          value="{{ request.GET.filter_data }}">
+      </li>  
+          
+      <li>
+        <label for="filter_dlitragem">Filtrar por litragem:</label>
+        <input type="text" id="filter_litragem" name="filter_litragem" class="form-control"
+          value="{{ request.GET.filter_litragem }}">
+      </li>  
+        
+      <li>
+        <label for="filter_valor">Filtrar por valor:</label>
+        <input type="text" id="filter_valor" name="filter_valor" class="form-control"
+          value="{{ request.GET.filter_valor }}">
+      </li>
+      <li>
+        <label for="filter_valor">Filtrar por kminicial:</label>
+        <input type="text" id="filter_kminicial" name="filter_kminicial" class="form-control"
+          value="{{ request.GET.filter_kminicial}}">
+      </li>
+      <li>
+        <label for="filter_valor">Filtrar por kmfinal:</label>
+        <input type="text" id="filter_kmfinal" name="filter_kmfinal" class="form-control"
+          value="{{ request.GET.filter_kkmfinal}}">
+      </li>
+          
+      <button type="submit" class="btn btn-success" id="filter_button">Filtrar</button>
+      <li><a href="/consumo" class="btn btn-success">Voltar</a></li>
+    </ul>
+  </form> 
+  </div>
+    
+
+      </ul>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Máquina</th>
+            <th scope="col">ID</th>
+            <th scope="col">Operador</th>
+            <th scope="col">Data</th>
+            <th scope="col">Litragem</th>
+            <th scope="col">Valor</th>
+            <th scope="col">kminicial</th>
+            <th scope="col">kmfinal</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tr> 
+          {% for dbs in db%}
+          <tr>
+            <td>{{ dbs.maquina.modelo }}</td>
+            <td>{{dbs.id}}</td>
+            <td>{{dbs.operador}}</td>
+            <td>{{dbs.data}}</td>
+            <td>{{dbs.litragem}}</td>
+            <td>{{dbs.valor}}</td>
+            <td>{{dbs.kminicial}}</td>
+            <td>{{dbs.kmfinal}}</td>
+           
+
+            <td>
+              <a href="/view2/{{dbs.id}}/" class="btn btn-dark">Visualizar</a>
+              <a href="/edit2/{{dbs.id}}/" class="btn btn-primary">Editar</a>
+              <a href="/delete2/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+<script src="{% static 'js/javascript.js' %}"></script>
+</div>
+</body>
+
+
+{% endblock %}

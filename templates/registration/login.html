@@ -1,0 +1,45 @@
+{% extends "tasks/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %}QaFuellog{{task.title}}{% endblock %}
+
+
+{% block content %}
+
+<body background="{% static 'imagem/log6.png' %}"height="10000">
+ 
+  <div class="login-container">
+    <form class="login-form" method="post">
+
+      <form class={% url 'login' %} method="post">
+        <div class="imglogo2">
+          <img src="{% static 'imagem/logo3.png' %}"width="300" height="300">
+
+        </div>
+
+        {% csrf_token %}
+
+        <div class="container">
+
+          {{ form|crispy }}
+
+          <label for="uname"><b></b></label>
+          <input type="hidden" checked="checked" name="remember">
+          <label for="psw"><b></b></label>
+          <input type="hidden" placeholder="Enter Username" name="uname" required>
+          <input type="hidden" placeholder="Enter Password" name="psw" required>
+
+          <button nome="submit">Login</button>
+          <input type="hidden" name="next" value={{ next }} />
+
+
+        </div>
+
+        <p class="change-form-p">Quer criar uma conta? <a href="/accounts/register"><dvi class="aqui">Clique aqui!</dvi></a></p>
+
+      </form>
+    </form>
+</body>
+{% endblock %}

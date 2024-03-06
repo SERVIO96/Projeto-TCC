@@ -1,0 +1,54 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+
+
+
+<!DOCTYPE html>
+{% block content %}
+<html lang="pt-br">
+    
+
+    
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<body>
+    <div class="header">
+     <a class="imgcont1" href="/"><img src="{% static 'imagem/logo4.png' %}"width="50" height="100" border-radius: "50%"; ></a>   
+     <h1>Cadastro de Maquinas</h1>
+    </div>
+    <div class="login-container">
+      <form registro="form" id="form" action="{% if db %}/update/{{db.id}}/{%else%}/create/{% endif %}"method="post">
+         {% csrf_token %}
+        <div class="form-group mt-4"><h4>TIPO:</h4>{{form.tipo}}</div>
+        <div class="form-group mt-4"><h4>MODELO:</h4> {{form.modelo}}</div>
+        <div class="form-group mt-4"><h4>PLACA:</h4> {{form.placa}}</div>
+        <div class="form-group mt-4"><h4>CHASSI:</h4> {{form.chassi}}</div>
+        <div class="form-group mt-4"><h4>DATA:</h4> {{form.data}}</div>
+        <input type="submit" class="btn btn-success" value="Salvar">
+        <a href="/maquina" class="btn btn-success" >Voltar</a>
+      </div>
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+        </form>
+    </div>
+      
+      
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

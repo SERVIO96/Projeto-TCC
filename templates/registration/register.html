@@ -1,0 +1,37 @@
+{% extends "tasks/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Registrar QA{{task.title}}{% endblock %}
+
+{% block content %}
+
+<div class="login-container">
+  <form form={% url 'login' %} method="post">
+
+    {% csrf_token %}
+
+
+
+
+    <div class="container">
+      {{ form|crispy }}
+      <label for="uname"><b></b></label>
+      <input type="hidden" checked="checked" name="remember">
+      <label for="psw"><b></b></label>
+      <input type="hidden" placeholder="Enter Username" name="uname" required>
+      <input type="hidden" placeholder="Enter Password" name="psw" required>
+      
+
+
+      <button nome="submit">Registar</button>
+      <input type="hidden" name="next" value={{ next }} />
+
+
+    </div>
+  </form>
+
+  <p class="change-form-p">Já possui uma conta? <a href="/accounts/login">
+      <dvi class="aqui">Clique aqui!</dvi>
+    </a></p>
+</div>
+  {% endblock %}

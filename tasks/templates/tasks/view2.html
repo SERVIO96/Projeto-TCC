@@ -1,0 +1,46 @@
+{% extends "tasks/base.html" %}
+{% load static %}
+
+
+
+
+<!DOCTYPE html>
+{% block content %}
+<html lang="pt-br">
+    
+
+    
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<body>
+    <div class="header">
+     <a class="imgcont1" href="/"><img src="{% static 'imagem/logo3.png' %}"width="50" height="100" ></a>   
+     <h1>Visualização de combustivel</h1>
+    </div>
+
+
+
+
+<div class="login-container">
+    <strong>Operador: </strong>{{db.operador}}<br><br>
+    <strong>Data: </strong>{{db.data}}<br><br>
+    <strong>Litragem: </strong>{{db.litragem}}<br><br>
+    <strong>Valor: </strong>{{db.valor}}<br><br>
+    <strong>Km inicial: </strong>{{db.kminicial}}<br><br>
+    <strong>Km final: </strong>{{db.kmfinal}}<br><br>
+</div>
+
+<div class="col-8 m-auto pt-3 pb-2 text-center">
+    <a href="/consumo" class="btn btn-info">Voltar</a>
+</div>
+
+
+
+{% endblock %}

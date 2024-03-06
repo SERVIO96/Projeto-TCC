@@ -1,0 +1,57 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block content %}
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<body>
+    <div class="header">
+        <a class="imgcont1" href="/"><img src="{% static 'imagem/logo4.png' %}" width="50" height="100"
+                border-radius: "50%" ;></a>
+        <h1>registro de combustivel</h1>
+    </div>
+
+
+    <div class="login-container">
+        <form registro="form2" id="form2" action="{% if db %}/update2/{{db.id}}/{%else%}/cre/{% endif %}" method="post">
+            {% csrf_token %}
+
+            <option value="{{dbs.id}}">{{dbs.tipo}}</option>
+
+            </select>
+
+            <div class="form-group mt-4">Operador {{form.operador}}</div>
+            <div class="form-group mt-4">Data {{form.data}}</div>
+            <div class="form-group mt-4">Litragem {{form.litragem}}</div>
+            <div class="form-group mt-4">Valor {{form.valor}}</div>
+            <div class="form-group mt-4">Km inicial {{form.kminicial}}</div>
+            <div class="form-group mt-4">Km final {{form.kmfinal}}</div><br>
+
+            <input type="submit" class="btn btn-success" value="Salvar">
+            <a href="/consumo" class="btn btn-info">Voltar</a>
+           
+             </form>
+        </div>
+        <div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+</body>
+
+</html>
+{% endblock %}

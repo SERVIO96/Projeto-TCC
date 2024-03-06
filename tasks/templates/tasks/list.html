@@ -1,0 +1,125 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+
+
+
+{% block content %}
+
+<body background="{% static 'imagem/t1.png' %}">
+
+    <nav class="header navbar navbar-expand-lg navbar-light ">
+        <a class="imgcont">
+            <img src="{% static 'imagem/logo4.png' %}" width="50" height="100">
+            <a class="navbar-brand" href="/"> BEM VINDO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Quem Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Quem Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Fale Conosco</a>
+                    </li>
+                    {% else %}
+
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/logout">Sair</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+    </nav>
+
+
+    </div>
+
+    <head>
+        <meta>
+        <style>
+            .vertical-menu {
+                width: 200px;
+                height: 1000px;
+                overflow-y: auto;
+                border-bottom: 2px solid black;
+
+
+            }
+
+            .vertical-menu a {
+                background-color: #dbdbdb;
+                color: rgb(17, 10, 10);
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+                border-bottom: 1px solid black;
+                border-left: 2px solid black;
+                border-right: 2px solid black;
+                border-top: 1px solid black;
+
+            }
+
+            .vertical-menu a:hover {
+                background-color: #ccc;
+
+            }
+
+
+
+            .vertical-menu a.active {
+                border-bottom: 2px solid black;
+                background-color: #04AA6D;
+                color: rgb(12, 3, 3);
+
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+
+        <div class="vertical-menu" name="viewport" content="width=device-width" , initial-scale="1">
+            <a href="#" class="active">Menu</a>
+            <a href="/maquina">Seleção de Maquinario</a>
+            <a href="/consumo">registro consumo</a>
+            <a href="#">Link 3</a>
+            <a href="#">Link 4</a>
+            <a href="#">Link 5</a>
+            <a href="#">Link 6</a>
+            <a href="#">Link 7</a>
+            <a href="#">Link 8</a>
+            <a href="#">Link 9</a>
+            <a href="#">Link 10</a>
+        </div>
+
+    </body>
+
+</body>
+
+{% endblock %}

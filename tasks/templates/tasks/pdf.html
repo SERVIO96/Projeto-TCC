@@ -1,0 +1,43 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<html>
+<body>
+  <style>
+    .header {
+        display: flex; /* Use um layout flexbox para alinhar a imagem e o título horizontalmente */
+        align-items: center; /* Centralize verticalmente */
+    }
+
+    .header img {
+        margin-right: 10px; /* Adicione um espaço à direita da imagem para separá-la do título */
+    }
+</style>
+  <div class="header">
+    <img src="{% static 'imagem/logo3.png' %}"alt="{{el.id}}"width="200"height="250"></a>
+    <h1>Relatório de Máquinas</h1>
+  </div>
+  <table class="my-table">
+      <tr>
+          <th class="table-header">Modelo</th>
+          <th class="table-header">Tipo</th>
+          <th class="table-header">Placa</th>
+          <th class="table-header">Chassi</th>
+          <th class="table-header">Data</th>
+      </tr>
+      {% for item in db %}
+          <tr>
+              <td>{{ item.modelo }}</td>
+              <td>{{ item.tipo }}</td>
+              <td>{{ item.placa }}</td>
+              <td>{{ item.chassi }}</td>
+              <td>{{ item.data }}</td>
+          </tr>
+      {% endfor %}
+  </table>
+</body>
+</html>
+{% endblock %}
